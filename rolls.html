@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Rolls · Kiana Lee</title>
+<meta name="description" content="Browse Kiana Lee's 35mm photographs from Yosemite, a graduation among redwoods, and walks around the South Bay and coast.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Rolls · Kiana Lee">
+<meta property="og:description" content="Browse Kiana Lee's 35mm photographs from Yosemite, a graduation among redwoods, and walks around the South Bay and coast.">
+<meta property="og:url" content="https://kianalee.photo/rolls.html">
+<meta property="og:image" content="https://kianalee.photo/assets/img/yos-r2-13a.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23100F0D'/%3E%3Cellipse cx='16' cy='16' rx='11' ry='9' fill='none' stroke='%23E23A21' stroke-width='2.5' transform='rotate(-8 16 16)'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+<script>
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+window.scrollTo(0, 0);
+</script>
+</head>
+<body>
+
+<div class="wipe wipe--in" aria-hidden="true"></div>
+
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"><span class="cursor-label mono"></span></div>
+
+<canvas class="grain" aria-hidden="true"></canvas>
+
+<header class="topbar">
+  <a class="topbar-name" href="index.html">K.LEE</a>
+  <button class="menu-toggle mono" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
+  <nav class="topbar-nav mono" id="main-nav" aria-label="Main">
+    <a href="rolls.html" aria-current="page">Rolls</a>
+    <a href="about.html">About</a>
+    <a href="contact.html" class="topbar-book">Book a session</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <header class="page-head">
+    <p class="page-eyebrow mono intro-fade">The archive &middot; 34 frames &amp; counting</p>
+    <h1 class="page-title split" data-split>THE ROLLS</h1>
+    <p class="page-note intro-fade">
+      Every roll gets developed, scanned, then edited down to the keepers.
+      Three are up now. A few more are still in the fridge, waiting for the lab.
+    </p>
+  </header>
+
+  <section class="home-section" style="border-top: none; padding-top: 0;">
+    <div class="roll-cards roll-cards--stack">
+      <a class="roll-card reveal" href="yosemite.html" data-cursor="go">
+        <div class="card-frame"><img src="assets/img/yos-r2-13a.jpg" alt="Half Dome from the meadow, framed by trees" loading="lazy" width="1600" height="1081"><span class="marks" aria-hidden="true"></span></div>
+        <div class="card-info">
+          <span class="card-no mono">ROLL 01</span>
+          <h2 class="card-title">YOSEMITE</h2>
+          <span class="card-meta mono">15 frames &middot; spring &middot; granite, meltwater &amp; everyone else</span>
+          <span class="card-arrow" aria-hidden="true">&rarr;</span>
+        </div>
+      </a>
+
+      <a class="roll-card reveal" href="graduation.html" data-cursor="go">
+        <div class="card-frame"><img src="assets/img/grad-27.jpg" alt="A graduate sitting on a boardwalk rail, laughing in backlight" loading="lazy" width="1600" height="1061"><span class="marks" aria-hidden="true"></span></div>
+        <div class="card-info">
+          <span class="card-no mono">ROLL 02</span>
+          <h2 class="card-title">GRAD, AMONG REDWOODS</h2>
+          <span class="card-meta mono">13 frames &middot; summer &middot; the session she books most</span>
+          <span class="card-arrow" aria-hidden="true">&rarr;</span>
+        </div>
+      </a>
+
+      <a class="roll-card reveal" href="close-to-home.html" data-cursor="go">
+        <div class="card-frame"><img src="assets/img/home-23.jpg" alt="A brown cow grazing on a green hillside" loading="lazy" width="1600" height="1061"><span class="marks" aria-hidden="true"></span></div>
+        <div class="card-info">
+          <span class="card-no mono">ROLL 03</span>
+          <h2 class="card-title">CLOSE TO HOME</h2>
+          <span class="card-meta mono">6 frames &middot; green season &middot; South Bay hills &amp; the coast</span>
+          <span class="card-arrow" aria-hidden="true">&rarr;</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer mono">
+    <span>&copy; 2026 Kiana Lee</span>
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="rolls.html">Rolls</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Book</a>
+    </nav>
+    <span>Photos by Kiana. Please ask before sharing.</span>
+  </footer>
+
+</main>
+
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/lenis.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

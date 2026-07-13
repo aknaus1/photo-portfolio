@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiana Lee · Film Photographer, San Jose</title>
+<meta name="description" content="Kiana Lee shoots 35mm film around San Jose, from grad portraits in the redwoods to weekends in Yosemite and along the coast.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kiana Lee · Film Photographer, San Jose">
+<meta property="og:description" content="Kiana Lee shoots 35mm film around San Jose, from grad portraits in the redwoods to weekends in Yosemite and along the coast.">
+<meta property="og:url" content="https://kianalee.photo/">
+<meta property="og:image" content="https://kianalee.photo/assets/img/hero.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23100F0D'/%3E%3Cellipse cx='16' cy='16' rx='11' ry='9' fill='none' stroke='%23E23A21' stroke-width='2.5' transform='rotate(-8 16 16)'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+<script>
+/* before ScrollTrigger loads and captures it: the preloader owns the entry
+   moment, so reloads must always start at the top, never mid-restore */
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+window.scrollTo(0, 0);
+</script>
+</head>
+<body>
+
+<!-- darkroom preloader -->
+<div class="preloader" aria-hidden="true">
+  <p class="preloader-tag mono">K.LEE / developing&hellip;</p>
+  <p class="preloader-count mono"><span id="load-count">0</span>%</p>
+  <div class="preloader-bar"><span id="load-bar"></span></div>
+</div>
+
+<div class="wipe" aria-hidden="true"></div>
+
+<!-- custom cursor -->
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"><span class="cursor-label mono"></span></div>
+
+<!-- film grain -->
+<canvas class="grain" aria-hidden="true"></canvas>
+
+<header class="topbar">
+  <a class="topbar-name" href="index.html">K.LEE</a>
+  <button class="menu-toggle mono" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
+  <nav class="topbar-nav mono" id="main-nav" aria-label="Main">
+    <a href="rolls.html">Rolls</a>
+    <a href="about.html">About</a>
+    <a href="contact.html" class="topbar-book">Book a session</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <figure class="hero-media">
+      <img id="hero-img" src="assets/img/hero.jpg" alt="Half Dome rising over the valley floor, shot on 35mm film" width="1818" height="1228">
+    </figure>
+
+    <div class="hero-copy">
+      <p class="hero-eyebrow mono intro-fade">Film photographer &middot; San Jose, California</p>
+      <h1 class="hero-name">
+        <span class="split" data-split>KIANA</span>
+        <span class="split hero-name-2" data-split>LEE</span>
+      </h1>
+      <p class="hero-caption mono intro-fade">R1 &middot; fr. 3 / <em class="marker-note">the keeper</em> / Half Dome, spring melt</p>
+    </div>
+
+    <p class="hero-scrollcue mono" aria-hidden="true">scroll<span class="hero-scrollcue-line"></span></p>
+  </section>
+
+  <!-- ============ MARQUEE ============ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="marquee-content">SHOT ON 35MM&ensp;&middot;&ensp;SAN JOSE, CALIFORNIA&ensp;&middot;&ensp;GRADS &middot; COUPLES &middot; LANDSCAPES&ensp;&middot;&ensp;NO PRESETS, JUST FILM&ensp;&middot;&ensp;</span>
+      <span class="marquee-content">SHOT ON 35MM&ensp;&middot;&ensp;SAN JOSE, CALIFORNIA&ensp;&middot;&ensp;GRADS &middot; COUPLES &middot; LANDSCAPES&ensp;&middot;&ensp;NO PRESETS, JUST FILM&ensp;&middot;&ensp;</span>
+    </div>
+  </div>
+
+  <!-- ============ THE ROLLS ============ -->
+  <section class="home-section">
+    <div class="section-head">
+      <h2 class="section-title split" data-split>THE ROLLS</h2>
+      <p class="section-note mono">Three rolls, three stories.<br>Every frame scanned straight off the negatives.</p>
+    </div>
+
+    <div class="roll-cards">
+      <a class="roll-card reveal" href="yosemite.html" data-cursor="go">
+        <div class="card-frame"><img src="assets/img/yos-r2-13a.jpg" alt="Half Dome from the meadow, framed by trees" loading="lazy" width="1600" height="1081"><span class="marks" aria-hidden="true"></span></div>
+        <div class="card-info">
+          <span class="card-no mono">ROLL 01</span>
+          <h3 class="card-title">YOSEMITE</h3>
+          <span class="card-meta mono">15 frames &middot; spring</span>
+          <span class="card-arrow" aria-hidden="true">&rarr;</span>
+        </div>
+      </a>
+
+      <a class="roll-card reveal" href="graduation.html" data-cursor="go">
+        <div class="card-frame"><img src="assets/img/grad-27.jpg" alt="A graduate sitting on a boardwalk rail, laughing in backlight" loading="lazy" width="1600" height="1061"><span class="marks" aria-hidden="true"></span></div>
+        <div class="card-info">
+          <span class="card-no mono">ROLL 02</span>
+          <h3 class="card-title">GRAD, AMONG REDWOODS</h3>
+          <span class="card-meta mono">13 frames &middot; summer</span>
+          <span class="card-arrow" aria-hidden="true">&rarr;</span>
+        </div>
+      </a>
+
+      <a class="roll-card reveal" href="close-to-home.html" data-cursor="go">
+        <div class="card-frame"><img src="assets/img/home-23.jpg" alt="A brown cow grazing on a green hillside" loading="lazy" width="1600" height="1061"><span class="marks" aria-hidden="true"></span></div>
+        <div class="card-info">
+          <span class="card-no mono">ROLL 03</span>
+          <h3 class="card-title">CLOSE TO HOME</h3>
+          <span class="card-meta mono">6 frames &middot; green season</span>
+          <span class="card-arrow" aria-hidden="true">&rarr;</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT TEASER ============ -->
+  <section class="teaser">
+    <p class="reveal">
+      Kiana shoots 35mm film around San Jose and wherever a tank of gas takes her.
+      No presets. No instant retakes. Just thirty-six frames, a little patience,
+      and all the moments between the poses.
+    </p>
+    <a class="teaser-link reveal" href="about.html" data-cursor="go">More about Kiana &rarr;</a>
+  </section>
+
+  <!-- ============ CONTACT CTA ============ -->
+  <section class="contact" id="contact">
+    <p class="contact-eyebrow mono reveal">Got a face, a place, or a day worth a roll of film?</p>
+    <a class="contact-email" href="contact.html" data-cursor="hi">
+      <span class="contact-email-text split" data-split>BOOK A SESSION</span>
+      <svg class="contact-underline" viewBox="0 0 600 24" fill="none" aria-hidden="true" preserveAspectRatio="none">
+        <path class="marker-path marker-path-idle" d="M4 14 C 120 6, 300 20, 596 10" />
+      </svg>
+    </a>
+    <div class="contact-links mono reveal">
+      <a href="https://instagram.com/kianadafish" rel="noopener">Instagram @kianadafish</a>
+      <span aria-hidden="true">/</span>
+      <a href="mailto:hello@kianalee.photo">hello@kianalee.photo</a>
+    </div>
+  </section>
+
+  <footer class="footer mono">
+    <span>&copy; 2026 Kiana Lee</span>
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="rolls.html">Rolls</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Book</a>
+    </nav>
+    <span>Photos by Kiana. Please ask before sharing.</span>
+  </footer>
+
+</main>
+
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/lenis.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

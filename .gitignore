@@ -1,0 +1,9 @@
+# full-res original scans — local source only, web copies live in assets/img/
+Film Photography/
+
+# machine-local Claude Code settings
+.claude/settings.local.json
+
+# OS noise
+Thumbs.db
+.DS_Store
