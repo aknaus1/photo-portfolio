@@ -115,11 +115,7 @@ window.KL = (function () {
       if (amount > 0) items.push({ label, detail, amount });
     };
 
-    add(
-      "Time on location",
-      hoursLabel(state.halfHours, true) + " × " + moneyShort(rate) + "/hr",
-      hours * rate
-    );
+    add("Time on location", hoursLabel(state.halfHours, true), hours * rate);
 
     add(
       "Film",
@@ -184,7 +180,9 @@ window.KL = (function () {
 
   /* ---------------- slip rendering ---------------- */
 
-  /* Fills a .slip-body with the itemised lines. */
+  /* Fills a .slip-body with what's on the order. Deliberately no
+     per-line prices: the slip says what you're getting, and the total
+     at the bottom says what it comes to. */
   function renderSlipBody(el, calc) {
     el.textContent = "";
     if (!calc.items.length) {
@@ -198,20 +196,15 @@ window.KL = (function () {
       const row = document.createElement("div");
       row.className = "slip-row";
 
-      const top = document.createElement("div");
-      top.className = "slip-line";
-      const label = document.createElement("span");
+      const label = document.createElement("p");
+      label.className = "slip-line";
       label.textContent = item.label;
-      const amount = document.createElement("span");
-      amount.className = "slip-amount";
-      amount.textContent = money(item.amount);
-      top.append(label, amount);
 
       const detail = document.createElement("p");
       detail.className = "slip-detail";
       detail.textContent = item.detail;
 
-      row.append(top, detail);
+      row.append(label, detail);
       el.appendChild(row);
     });
   }

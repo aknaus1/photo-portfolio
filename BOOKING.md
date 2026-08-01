@@ -4,7 +4,7 @@ Three pieces, in the order you'd meet them:
 
 | Page | What it does |
 | --- | --- |
-| `pricing.html` | Builds an itemised estimate. Pure front end, no network. |
+| `pricing.html` | Builds an estimate total. Pure front end, no network. |
 | `booking.html` | Picks a day and a start time, then sends the request. |
 | `api/` | **Optional.** Google Calendar + Stripe, if you want them. |
 
@@ -35,18 +35,25 @@ blocked on `file://`, a `<script>` tag never is.
 
 Everything is in [`assets/data/pricing.js`](assets/data/pricing.js). Edit a
 number, reload. Nothing else needs to change: the session cards, the film
-list, the add-ons, the home-page "from $92" figures and the ledger at the
-bottom of the pricing page are all generated from it.
+list, the add-ons and the home-page "from $92" figures are all generated
+from it.
 
 The numbers shipped are real mid-2026 Bay Area costs — single-roll retail
 film, walk-in develop-and-scan, pro-lab print list prices — with Kiana's
-hourly rate on top. The pricing page prints those figures itself under
-**Where the money goes**, so if you change `hourly` you probably want to
-change the matching line in `sources` too.
+hourly rate on top.
 
-Nothing customer-facing compares her prices to anyone else's. If you add a
-line to `sources`, keep it about what something costs or what it buys, not
-what other photographers charge.
+**The site never shows a cost breakdown.** The slip lists what's on the
+order and gives one estimate total; individual prices don't appear
+anywhere a visitor can see. `costNotes` at the bottom of the file records
+where each number came from, for whoever revises them later — nothing
+renders it. Nothing customer-facing compares her prices to anyone else's
+either.
+
+One caveat: `assets/data/pricing.js` is a normal script, so the numbers
+are readable in devtools by anyone who looks. Not printing them is a
+presentation decision, not a secret. Moving pricing behind the API would
+be the only way to actually hide it, and it would cost the site its
+works-from-a-file-and-needs-no-backend property.
 
 The deposit is a percentage of the total, clamped and rounded:
 `deposit: { pct, min, max, roundTo }`.

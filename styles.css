@@ -1471,7 +1471,7 @@ body.has-cursor, body.has-cursor a, body.has-cursor button { cursor: none; }
 
 .stock {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
   gap: 0.9rem;
   padding: 0.8rem 1.05rem;
@@ -1501,8 +1501,6 @@ body.has-cursor, body.has-cursor a, body.has-cursor button { cursor: none; }
 
 .stock-name { display: block; }
 .stock-blurb { display: block; color: var(--muted); font-size: 0.88rem; line-height: 1.4; }
-.stock-price { color: var(--muted); white-space: nowrap; }
-.stock.is-on .stock-price { color: var(--marker); }
 
 /* ---------------- 04 · what you get back ---------------- */
 
@@ -1527,7 +1525,7 @@ body.has-cursor, body.has-cursor a, body.has-cursor button { cursor: none; }
 
 .mark-row {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
   gap: 1rem;
   padding: 0.85rem 1.05rem;
@@ -1569,7 +1567,6 @@ body.has-cursor, body.has-cursor a, body.has-cursor button { cursor: none; }
 
 .mark-name { display: block; }
 .mark-blurb { display: block; color: var(--muted); font-size: 0.88rem; line-height: 1.4; }
-.mark-price { color: var(--marker); white-space: nowrap; font-size: 0.78rem; }
 
 .print-list {
   display: grid;
@@ -1683,9 +1680,7 @@ body.has-cursor, body.has-cursor a, body.has-cursor button { cursor: none; }
 
 .slip-row + .slip-row { margin-top: 0.7rem; }
 
-.slip-line { display: flex; justify-content: space-between; gap: 0.75rem; align-items: baseline; }
-
-.slip-amount { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.slip-line { font-weight: 500; }
 
 .slip-detail { color: #6B6355; font-size: 0.68rem; }
 
@@ -2122,29 +2117,6 @@ body.has-cursor, body.has-cursor a, body.has-cursor button { cursor: none; }
   .slot { flex: 1 1 7rem; }
 }
 
-/* ---------------- where the money goes ---------------- */
-
-.ledger {
-  padding: clamp(4rem, 9vw, 7rem) var(--pad);
-  border-top: 1px solid var(--hairline);
-}
-
-.ledger-table { border-top: 1px solid var(--hairline); max-width: 64rem; }
-
-.ledger-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 7rem minmax(0, 15rem);
-  gap: 1rem;
-  align-items: baseline;
-  padding: 0.85rem 0.25rem;
-  border-bottom: 1px solid var(--hairline);
-}
-
-.ledger-cell--1 { color: var(--marker); text-align: right; font-variant-numeric: tabular-nums; }
-.ledger-cell--2 { color: var(--muted); }
-
-.ledger-note { margin-top: 2.25rem; max-width: 56ch; color: var(--muted); }
-
 @media (max-width: 1040px) {
   .est { grid-template-columns: 1fr; }
 
@@ -2161,8 +2133,6 @@ body.has-cursor, body.has-cursor a, body.has-cursor button { cursor: none; }
 @media (max-width: 560px) {
   .type-grid { grid-template-columns: 1fr; }
 
-  .ledger-row { grid-template-columns: minmax(0, 1fr) auto; }
-  .ledger-cell--2 { grid-column: 1 / -1; font-size: 0.72rem; }
 }
 
 /* footer page links */
@@ -2227,11 +2197,6 @@ body.has-cursor, body.has-cursor a, body.has-cursor button { cursor: none; }
   }
 
   .slip-body { max-height: none; overflow: visible; background: none; }
-
-  .ledger { border: 0; padding: 2rem 0 0; break-before: page; }
-  .ledger-table, .ledger-row { border-color: #ccc; }
-  .ledger-cell--1 { color: #000; }
-  .ledger-cell--2, .ledger-note { color: #444; }
 
   a[href]::after { content: ""; }
 }

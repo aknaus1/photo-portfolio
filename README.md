@@ -27,7 +27,7 @@ Re-encoding through Pillow also strips EXIF/GPS from the published copies.
 - `rolls.html`: all rolls, stacked
 - `yosemite.html` / `graduation.html` / `close-to-home.html`: one page per roll
 - `about.html`: about page
-- `pricing.html`: itemised session estimator
+- `pricing.html`: session estimator
 - `booking.html`: availability calendar, half-hour slots, deposit
 - `contact.html`: general enquiries (opens a prefilled email)
 

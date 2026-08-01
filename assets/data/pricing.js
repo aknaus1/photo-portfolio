@@ -9,10 +9,13 @@
 
    TO CHANGE A PRICE: edit the number here. Nothing else.
 
-   Every cost below is a real, checkable Bay Area number as of
-   mid-2026 — see `sources` at the bottom, which the pricing page
-   prints verbatim. Lab and film are passed through at roughly what
-   she pays for them; the hourly rate on top is hers to set.
+   The site shows one estimate total, never a line-by-line breakdown
+   — see `costNotes` at the bottom for where each number came from.
+   That list is for you, not the page: nothing renders it.
+
+   Worth knowing: this file is served to the browser, so the numbers
+   are readable by anyone who opens devtools. Not showing them is a
+   presentation choice, not a secret.
    ============================================================ */
 
 window.KL_PRICING = {
@@ -182,12 +185,13 @@ window.KL_PRICING = {
 
   email: "hello@kianalee.photo",
 
-  /* ---------------- receipts ---------------- */
+  /* ---------------- where the numbers came from ---------------- */
 
-  /* Printed verbatim under "where the money goes" on the pricing page,
-     so nobody has to take the numbers on faith. Change a price above and
-     the matching line here probably needs changing too. */
-  sources: [
+  /* INTERNAL ONLY — nothing renders this. The site shows a single
+     estimate total, not a cost breakdown. Kept here so that when you
+     revise a price above you can see what the underlying cost was when
+     it was set. Safe to edit or delete; no page reads it. */
+  costNotes: [
     ["Kodak Gold 200, 36exp, single roll", "$9–12", "retail, mid-2026"],
     ["Kodak Portra 400, 36exp, single roll", "$16–18", "retail, mid-2026"],
     ["Develop + 2000dpi scan, 36exp color", "$14–16", "Bay Area lab walk-in"],

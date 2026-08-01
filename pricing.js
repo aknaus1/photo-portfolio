@@ -38,7 +38,6 @@
     slipDeposit: document.getElementById("slip-deposit"),
     slipNo: document.getElementById("slip-no"),
     slipQuote: document.getElementById("slip-quote"),
-    ledger: document.getElementById("ledger"),
     barTotal: document.getElementById("est-bar-total"),
     slipStatus: document.getElementById("slip-status"),
   };
@@ -122,9 +121,7 @@
 
     const meta = document.createElement("span");
     meta.className = "type-meta mono";
-    meta.textContent =
-      "from " + KL.hoursLabel(Math.round(s.minHours * 2), true) +
-      " · " + KL.moneyShort(s.hourly || P.hourly) + "/hr";
+    meta.textContent = "from " + KL.hoursLabel(Math.round(s.minHours * 2), true);
 
     const marks = document.createElement("span");
     marks.className = "marks";
@@ -163,11 +160,7 @@
     blurb.textContent = s.blurb;
     text.append(name, blurb);
 
-    const price = document.createElement("span");
-    price.className = "stock-price mono";
-    price.textContent = KL.moneyShort(s.roll) + " / roll";
-
-    label.append(dot, text, price);
+    label.append(dot, text);
     el.stocks.appendChild(label);
   });
 
@@ -204,7 +197,7 @@
     {
       key: "rush",
       name: "Rush the lab",
-      blurb: "Next day instead of about a week. Costs what the lab charges.",
+      blurb: "Next day instead of about a week, when you can't wait.",
       price: () => P.lab.rush,
       per: "order",
     },
@@ -234,11 +227,7 @@
     blurb.textContent = a.blurb;
     text.append(name, blurb);
 
-    const price = document.createElement("span");
-    price.className = "mark-price mono";
-    price.textContent = "+" + KL.moneyShort(a.price()) + " / " + a.per;
-
-    label.append(input, markBox(), text, price);
+    label.append(input, markBox(), text);
     el.addons.appendChild(label);
   });
 
@@ -254,7 +243,7 @@
     name.textContent = p.name;
     const blurb = document.createElement("span");
     blurb.className = "mark-blurb";
-    blurb.textContent = p.unit + " · " + KL.moneyShort(p.price);
+    blurb.textContent = p.unit;
     text.append(name, blurb);
 
     const read = document.createElement("span");
@@ -285,26 +274,18 @@
 
     const name = document.createElement("span");
     name.textContent = t.name;
-    const price = document.createElement("span");
-    price.className = "pill-price mono";
-    price.textContent = t.quote ? "let's talk" : t.price ? "+" + KL.moneyShort(t.price) : "included";
+    label.append(name);
 
-    label.append(name, price);
+    /* "included" and "let's talk" are statuses worth showing; a surcharge
+       figure is a component price, which the slip totals instead */
+    const status = t.quote ? "let's talk" : t.price ? "" : "no travel fee";
+    if (status) {
+      const price = document.createElement("span");
+      price.className = "pill-price mono";
+      price.textContent = status;
+      label.append(price);
+    }
     el.travel.appendChild(label);
-  });
-
-  /* ---------------- the ledger ---------------- */
-
-  P.sources.forEach((row) => {
-    const line = document.createElement("div");
-    line.className = "ledger-row";
-    row.forEach((cell, i) => {
-      const span = document.createElement("span");
-      span.className = "ledger-cell ledger-cell--" + i;
-      span.textContent = cell;
-      line.appendChild(span);
-    });
-    el.ledger.appendChild(line);
   });
 
   /* ---------------- hours dial ---------------- */
