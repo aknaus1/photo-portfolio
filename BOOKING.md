@@ -39,10 +39,14 @@ list, the add-ons, the home-page "from $92" figures and the ledger at the
 bottom of the pricing page are all generated from it.
 
 The numbers shipped are real mid-2026 Bay Area costs — single-roll retail
-film, walk-in develop-and-scan, pro-lab print list prices — with labour at
-the bottom of the local beginner range. The pricing page prints those
-source figures itself under **Where the money goes**, so if you change
-`hourly` you probably want to change the matching line in `sources` too.
+film, walk-in develop-and-scan, pro-lab print list prices — with Kiana's
+hourly rate on top. The pricing page prints those figures itself under
+**Where the money goes**, so if you change `hourly` you probably want to
+change the matching line in `sources` too.
+
+Nothing customer-facing compares her prices to anyone else's. If you add a
+line to `sources`, keep it about what something costs or what it buys, not
+what other photographers charge.
 
 The deposit is a percentage of the total, clamped and rounded:
 `deposit: { pct, min, max, roundTo }`.

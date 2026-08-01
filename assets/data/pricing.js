@@ -11,17 +11,17 @@
 
    Every cost below is a real, checkable Bay Area number as of
    mid-2026 — see `sources` at the bottom, which the pricing page
-   prints verbatim. Kiana is new, so labor is deliberately at the
-   low end of the beginner range and the lab costs are passed
-   through at roughly what she pays.
+   prints verbatim. Lab and film are passed through at roughly what
+   she pays for them; the hourly rate on top is hers to set.
    ============================================================ */
 
 window.KL_PRICING = {
 
   /* ---------------- labor ---------------- */
 
-  /* Beginner Bay Area portrait rate runs $50–100/hr. Sitting at the
-     bottom of that on purpose while the portfolio grows. Events and
+  /* Her portrait rate. (For reference when you revise it: local
+     beginner rates ran $50–100/hr in mid-2026. That's a note for you,
+     not for the site — nothing customer-facing quotes it.) Events and
      weddings carry their own rate: longer days, no second chances. */
   hourly: 65,
 
@@ -194,6 +194,6 @@ window.KL_PRICING = {
     ["4000dpi scan upgrade", "+$3–4", "same lab, per roll"],
     ["4×6 lustre print", "$1.10", "pro lab list price"],
     ["8×10 lustre print", "$4.00", "pro lab list price"],
-    ["Beginner portrait rate, Bay Area", "$50–100/hr", "hers is $65"],
+    ["Her time on a portrait session", "$65/hr", "events and weddings differ"],
   ],
 };
