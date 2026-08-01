@@ -51,6 +51,7 @@
   let lenis = null;
   if (!reduced) {
     lenis = new Lenis({ lerp: 0.09 });
+    window.lenisInstance = lenis; // booking.js scrolls between its steps
     lenis.on("scroll", ScrollTrigger.update);
     gsap.ticker.add((t) => lenis.raf(t * 1000));
     gsap.ticker.lagSmoothing(0);
@@ -688,6 +689,51 @@
     });
   }
 
+  /* ---------------- price teaser (home) ---------------- */
+
+  /* Three real starting prices, worked out from the same model the
+     estimator uses, so the home page can never quote a stale number. */
+  const teaser = document.getElementById("price-teaser");
+  if (teaser && window.KL_PRICING) {
+    const P = window.KL_PRICING;
+    const cheapest = P.stocks.reduce((a, b) => (b.roll < a.roll ? b : a));
+
+    ["grad", "couples", "wedding"].forEach((id) => {
+      const s = P.sessions.find((x) => x.id === id);
+      if (!s) return;
+      const from =
+        s.minHours * (s.hourly || P.hourly) + s.rolls * (cheapest.roll + P.lab.developScan);
+
+      const card = document.createElement("a");
+      card.className = "price-frame reveal";
+      card.href = "pricing.html";
+      card.setAttribute("data-cursor", "go");
+
+      const eyebrow = document.createElement("span");
+      eyebrow.className = "price-from mono";
+      eyebrow.textContent = "from";
+
+      const num = document.createElement("span");
+      num.className = "price-num";
+      num.textContent = "$" + Math.round(from);
+
+      const name = document.createElement("span");
+      name.className = "price-name";
+      name.textContent = s.name;
+
+      const meta = document.createElement("span");
+      meta.className = "price-meta mono";
+      const whole = Math.floor(s.minHours);
+      meta.textContent =
+        [whole ? whole + (whole === 1 ? " hr" : " hrs") : "", s.minHours % 1 ? "30 min" : ""]
+          .filter(Boolean).join(" ") + " · " +
+        s.rolls + (s.rolls === 1 ? " roll" : " rolls") + " · scans included";
+
+      card.append(eyebrow, num, name, meta);
+      teaser.appendChild(card);
+    });
+  }
+
   /* ---------------- booking form (contact page) ---------------- */
 
   const form = document.getElementById("book-form");
@@ -695,13 +741,12 @@
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       const f = new FormData(form);
-      const subject = "Booking inquiry: " + f.get("type") + " (" + f.get("name") + ")";
+      const subject = f.get("type") + " (" + f.get("name") + ")";
       const body =
         "Hi Kiana,\n\n" +
         "Name: " + f.get("name") + "\n" +
         "Email: " + f.get("email") + "\n" +
-        "Session: " + f.get("type") + "\n" +
-        "Preferred date: " + (f.get("date") || "flexible") + "\n\n" +
+        "About: " + f.get("type") + "\n\n" +
         f.get("message") + "\n";
       window.location.href =
         "mailto:hello@kianalee.photo?subject=" + encodeURIComponent(subject) +

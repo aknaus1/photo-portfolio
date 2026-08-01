@@ -43,8 +43,9 @@ window.scrollTo(0, 0);
   <button class="menu-toggle mono" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
   <nav class="topbar-nav mono" id="main-nav" aria-label="Main">
     <a href="rolls.html">Rolls</a>
+    <a href="pricing.html">Pricing</a>
     <a href="about.html">About</a>
-    <a href="contact.html" class="topbar-book">Book a session</a>
+    <a href="booking.html" class="topbar-book">Book a session</a>
   </nav>
 </header>
 
@@ -116,6 +117,20 @@ window.scrollTo(0, 0);
     </div>
   </section>
 
+  <!-- ============ WHAT IT COSTS ============ -->
+  <section class="home-section">
+    <div class="section-head">
+      <h2 class="section-title split" data-split>WHAT IT COSTS</h2>
+      <p class="section-note mono">Her time, the film, the lab.<br>Itemised before you commit to anything.</p>
+    </div>
+    <div class="teaser-prices" id="price-teaser"></div>
+    <p class="teaser-price-note reveal">
+      Every price starts with what a roll of film and a lab bill actually cost,
+      and her rate sits at the bottom of the local range while the portfolio grows.
+      <a href="pricing.html" data-cursor="go">Build your own estimate &rarr;</a>
+    </p>
+  </section>
+
   <!-- ============ ABOUT TEASER ============ -->
   <section class="teaser">
     <p class="reveal">
@@ -129,7 +144,7 @@ window.scrollTo(0, 0);
   <!-- ============ CONTACT CTA ============ -->
   <section class="contact" id="contact">
     <p class="contact-eyebrow mono reveal">Got a face, a place, or a day worth a roll of film?</p>
-    <a class="contact-email" href="contact.html" data-cursor="hi">
+    <a class="contact-email" href="booking.html" data-cursor="hi">
       <span class="contact-email-text split" data-split>BOOK A SESSION</span>
       <svg class="contact-underline" viewBox="0 0 600 24" fill="none" aria-hidden="true" preserveAspectRatio="none">
         <path class="marker-path marker-path-idle" d="M4 14 C 120 6, 300 20, 596 10" />
@@ -146,8 +161,10 @@ window.scrollTo(0, 0);
     <span>&copy; 2026 Kiana Lee</span>
     <nav class="footer-nav" aria-label="Footer">
       <a href="rolls.html">Rolls</a>
+      <a href="pricing.html">Pricing</a>
       <a href="about.html">About</a>
-      <a href="contact.html">Book</a>
+      <a href="booking.html">Book</a>
+      <a href="contact.html">Contact</a>
     </nav>
     <span>Photos by Kiana. Please ask before sharing.</span>
   </footer>
@@ -157,6 +174,7 @@ window.scrollTo(0, 0);
 <script src="vendor/gsap.min.js"></script>
 <script src="vendor/ScrollTrigger.min.js"></script>
 <script src="vendor/lenis.min.js"></script>
+<script src="assets/data/pricing.js"></script>
 <script src="main.js"></script>
 </body>
 </html>

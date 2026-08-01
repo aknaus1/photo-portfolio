@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book a Session · Kiana Lee</title>
+<meta name="description" content="Pick a date and a start time for a 35mm film session with Kiana Lee in San Jose. One session a day, half-hour slots, deposit by card or Venmo.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Book a Session · Kiana Lee">
+<meta property="og:description" content="Pick a date and a start time for a 35mm film session with Kiana Lee in San Jose. One session a day, half-hour slots, deposit by card or Venmo.">
+<meta property="og:url" content="https://kianalee.photo/booking.html">
+<meta property="og:image" content="https://kianalee.photo/assets/img/hero.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23100F0D'/%3E%3Cellipse cx='16' cy='16' rx='11' ry='9' fill='none' stroke='%23E23A21' stroke-width='2.5' transform='rotate(-8 16 16)'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+<script>
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+window.scrollTo(0, 0);
+</script>
+</head>
+<body>
+
+<div class="wipe wipe--in" aria-hidden="true"></div>
+
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"><span class="cursor-label mono"></span></div>
+
+<canvas class="grain" aria-hidden="true"></canvas>
+
+<header class="topbar">
+  <a class="topbar-name" href="index.html">K.LEE</a>
+  <button class="menu-toggle mono" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
+  <nav class="topbar-nav mono" id="main-nav" aria-label="Main">
+    <a href="rolls.html">Rolls</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="booking.html" class="topbar-book" aria-current="page">Book a session</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <header class="page-head">
+    <p class="page-eyebrow mono intro-fade">One session a day &middot; San Jose &amp; around the Bay</p>
+    <h1 class="page-title split" data-split>PICK A DATE</h1>
+    <p class="page-note intro-fade">
+      She shoots one session a day, so whatever's still open below is
+      genuinely open. Choose a day, choose a start time, and the light
+      does the rest.
+    </p>
+  </header>
+
+  <section class="est">
+
+    <div class="est-config">
+
+      <div class="est-block reveal" role="group" aria-labelledby="bk-1">
+        <h2 class="est-legend mono" id="bk-1"><span class="est-no">01</span> The session</h2>
+        <div class="chips" id="session-chips"></div>
+        <div class="dial dial--slim">
+          <output class="dial-read dial-read--sm" id="hours-read" for="hours">1 HR</output>
+          <input class="dial-range" id="hours" type="range" min="2" max="24" step="1" value="2"
+                 aria-label="Time on location, in half hours">
+          <div class="dial-scale mono" id="hours-scale" aria-hidden="true"></div>
+        </div>
+        <p class="est-hint mono" id="session-note"></p>
+      </div>
+
+      <div class="est-block reveal" role="group" aria-labelledby="bk-2">
+        <h2 class="est-legend mono" id="bk-2"><span class="est-no">02</span> The day</h2>
+        <div class="cal" id="cal">
+          <div class="cal-head">
+            <button class="cal-nav" type="button" id="cal-prev" aria-label="Previous month">&larr;</button>
+            <p class="cal-month" id="cal-month" aria-live="polite">&nbsp;</p>
+            <button class="cal-nav" type="button" id="cal-next" aria-label="Next month">&rarr;</button>
+          </div>
+          <div class="cal-dows mono" aria-hidden="true"></div>
+          <div class="cal-grid" id="cal-grid"></div>
+        </div>
+        <ul class="cal-key mono">
+          <li><span class="key-swatch key-open" aria-hidden="true"></span>open</li>
+          <li><span class="key-swatch key-taken" aria-hidden="true"></span>already booked</li>
+          <li><span class="key-swatch key-closed" aria-hidden="true"></span>not shooting</li>
+        </ul>
+        <p class="est-hint mono" id="cal-note"></p>
+      </div>
+
+      <div class="est-block reveal is-waiting" id="block-time" role="group" aria-labelledby="bk-3">
+        <h2 class="est-legend mono" id="bk-3"><span class="est-no">03</span> The start time</h2>
+        <p class="wait-note mono" id="slot-wait">Pick a day above and the open half-hours appear here.</p>
+        <div class="slots" id="slots"></div>
+        <p class="est-hint mono" id="sun-note"></p>
+      </div>
+
+      <div class="est-block reveal" id="block-you" role="group" aria-labelledby="bk-4">
+        <h2 class="est-legend mono" id="bk-4"><span class="est-no">04</span> You</h2>
+        <form class="book-form" id="booking-form" novalidate>
+          <div class="field-row">
+            <div class="field">
+              <label for="b-name">Your name</label>
+              <input id="b-name" name="name" type="text" required autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="b-email">Your email</label>
+              <input id="b-email" name="email" type="email" required autocomplete="email">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="b-phone">Phone <span class="opt">(optional)</span></label>
+              <input id="b-phone" name="phone" type="tel" autocomplete="tel">
+            </div>
+            <div class="field">
+              <label for="b-where">Where were you thinking?</label>
+              <input id="b-where" name="where" type="text" placeholder="Alum Rock, campus, somewhere she picks…">
+            </div>
+          </div>
+          <div class="field">
+            <label for="b-msg">Anything she should know</label>
+            <textarea id="b-msg" name="message" placeholder="Who's coming, what it's for, anything you hate about having your picture taken…"></textarea>
+          </div>
+        </form>
+      </div>
+
+      <div class="est-block reveal" id="block-pay" role="group" aria-labelledby="bk-5">
+        <h2 class="est-legend mono" id="bk-5"><span class="est-no">05</span> Hold the date</h2>
+        <p class="pay-lede">
+          A deposit of <strong id="pay-amount">$40</strong> holds the day and comes
+          straight off the total. Everything else is due after you've seen the scans.
+        </p>
+        <div class="pay-grid" id="pay-grid"></div>
+        <button class="book-submit" type="submit" form="booking-form" id="book-submit" data-cursor="hi">
+          SEND THE REQUEST &rarr;
+        </button>
+        <p class="form-note mono" id="form-note" aria-live="polite"></p>
+      </div>
+
+      <div class="done" id="done" hidden>
+        <p class="done-eyebrow mono">Request sent</p>
+        <h2 class="done-when" id="done-when"></h2>
+        <p class="done-copy" id="done-copy"></p>
+        <div class="pay-actions" id="pay-actions"></div>
+        <p class="done-fine mono" id="done-fine"></p>
+      </div>
+
+    </div>
+
+    <aside class="est-slip-wrap">
+      <div class="slip" id="slip">
+        <div class="slip-head">
+          <p class="slip-brand">KIANA LEE</p>
+          <p class="slip-sub">35MM &middot; SAN JOSE, CA</p>
+          <p class="slip-meta"><span>BOOKING &mdash; HOLD</span><span id="slip-no">No. 0000</span></p>
+        </div>
+        <div class="slip-rule" aria-hidden="true"></div>
+        <div class="slip-when" id="slip-when"></div>
+        <div class="slip-rule" aria-hidden="true"></div>
+        <div class="slip-body" id="slip-body"></div>
+        <div class="slip-rule" aria-hidden="true"></div>
+        <div class="slip-total">
+          <span>ESTIMATE</span>
+          <span id="slip-total">$0.00</span>
+        </div>
+        <p class="slip-deposit"><span>Deposit to hold the date</span><span id="slip-deposit">$0</span></p>
+        <a class="slip-cta slip-cta--ghost" href="pricing.html" data-cursor="go">CHANGE WHAT'S ON THE SLIP</a>
+        <p class="slip-fine">
+          Estimate only. She confirms the real number by email before
+          anything is due.
+        </p>
+        <p class="vis-hidden" id="slip-status" role="status"></p>
+        <p class="slip-stamp" aria-hidden="true">Not yet<br>confirmed</p>
+      </div>
+    </aside>
+
+  </section>
+
+  <a class="est-bar mono" id="book-bar" href="#block-pay" data-cursor="go">
+    <span class="est-bar-label" id="book-bar-when">Pick a day</span>
+    <span class="est-bar-total" id="book-bar-total">$0.00</span>
+    <span class="est-bar-go">Hold it &rarr;</span>
+  </a>
+
+  <section class="contact">
+    <p class="contact-eyebrow mono reveal">Rather just ask a question first?</p>
+    <a class="contact-email" href="contact.html" data-cursor="hi">
+      <span class="contact-email-text split" data-split>SEND A NOTE</span>
+      <svg class="contact-underline" viewBox="0 0 600 24" fill="none" aria-hidden="true" preserveAspectRatio="none">
+        <path class="marker-path marker-path-idle" d="M4 14 C 120 6, 300 20, 596 10" />
+      </svg>
+    </a>
+    <div class="contact-links mono reveal">
+      <a href="https://instagram.com/kianadafish" rel="noopener">Instagram @kianadafish</a>
+      <span aria-hidden="true">/</span>
+      <a href="mailto:hello@kianalee.photo">hello@kianalee.photo</a>
+    </div>
+  </section>
+
+  <footer class="footer mono">
+    <span>&copy; 2026 Kiana Lee</span>
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="rolls.html">Rolls</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html">About</a>
+      <a href="booking.html">Book</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <span>Photos by Kiana. Please ask before sharing.</span>
+  </footer>
+
+</main>
+
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/lenis.min.js"></script>
+<script src="assets/data/pricing.js"></script>
+<script src="assets/data/availability.js"></script>
+<script src="main.js"></script>
+<script src="estimate.js"></script>
+<script src="schedule.js"></script>
+<script src="booking.js"></script>
+</body>
+</html>
