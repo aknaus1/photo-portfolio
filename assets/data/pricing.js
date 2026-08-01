@@ -42,7 +42,7 @@ window.KL_PRICING = {
     {
       id: "portrait",
       name: "Portrait / solo",
-      blurb: "Headshots, senior photos, or just you, properly.",
+      blurb: "Headshots, senior photos, or just you on your own.",
       minHours: 1,
       rolls: 1,
     },
@@ -79,7 +79,7 @@ window.KL_PRICING = {
     {
       id: "wedding",
       name: "Wedding / elopement",
-      blurb: "Small and film-only. Ceremony, portraits, the loud part.",
+      blurb: "Small and film-only. Ceremony, portraits, the party after.",
       minHours: 4,
       rolls: 6,
       hourly: 85,
@@ -94,7 +94,7 @@ window.KL_PRICING = {
     {
       id: "gold",
       name: "Kodak Gold 200",
-      blurb: "Warm, golden, forgiving. Her default in daylight.",
+      blurb: "Warm and forgiving. Her default in daylight.",
       roll: 11,
     },
     {
@@ -112,7 +112,7 @@ window.KL_PRICING = {
     {
       id: "hp5",
       name: "Ilford HP5 Plus 400",
-      blurb: "Black & white, grainy and honest.",
+      blurb: "Black and white, grain and all.",
       roll: 12,
     },
   ],
@@ -151,7 +151,7 @@ window.KL_PRICING = {
   prints: [
     { id: "p46", name: "4×6 prints", unit: "set of 10", price: 25, max: 10 },
     { id: "p57", name: "5×7 prints", unit: "set of 5", price: 24, max: 10 },
-    { id: "p810", name: "8×10 print", unit: "each, hand-picked", price: 18, max: 12 },
+    { id: "p810", name: "8×10 print", unit: "each", price: 18, max: 12 },
   ],
 
   /* ---------------- travel ---------------- */
@@ -184,8 +184,9 @@ window.KL_PRICING = {
 
   /* ---------------- receipts ---------------- */
 
-  /* What the pricing page prints under "where the money goes", so
-     nobody has to take the numbers on faith. */
+  /* Printed verbatim under "where the money goes" on the pricing page,
+     so nobody has to take the numbers on faith. Change a price above and
+     the matching line here probably needs changing too. */
   sources: [
     ["Kodak Gold 200, 36exp, single roll", "$9–12", "retail, mid-2026"],
     ["Kodak Portra 400, 36exp, single roll", "$16–18", "retail, mid-2026"],
@@ -193,6 +194,6 @@ window.KL_PRICING = {
     ["4000dpi scan upgrade", "+$3–4", "same lab, per roll"],
     ["4×6 lustre print", "$1.10", "pro lab list price"],
     ["8×10 lustre print", "$4.00", "pro lab list price"],
-    ["Beginner portrait rate, Bay Area", "$50–100/hr", "and she's at the bottom of it"],
+    ["Beginner portrait rate, Bay Area", "$50–100/hr", "hers is $65"],
   ],
 };

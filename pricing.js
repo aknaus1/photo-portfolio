@@ -384,8 +384,8 @@
     el.hoursRead.textContent = KL.hoursLabel(state.halfHours);
     buildScale(minHalf, MAX_HALF_HOURS);
     el.hoursNote.textContent =
-      session.name + " starts at " + KL.hoursLabel(minHalf, true) +
-      ". Travel between spots counts.";
+      session.name + ": " + KL.hoursLabel(minHalf, true) +
+      " minimum. Driving between spots counts.";
 
     /* rolls */
     el.rollsVal.textContent = state.rolls;
@@ -435,7 +435,7 @@
     el.slipQuote.hidden = !calc.quoteOnly;
     if (calc.quoteOnly) {
       el.slipQuote.textContent =
-        "A trip that far gets quoted by hand — gas, time and a night away aren't on this slip yet.";
+        "Trips that far are quoted by hand. Gas, driving time and a night away aren't on this slip.";
     }
 
     KL.save(state);

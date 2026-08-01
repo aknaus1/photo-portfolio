@@ -179,11 +179,11 @@
       grid.appendChild(cell);
     }
 
-    el["cal-note"].textContent = open
-      ? open + (open === 1 ? " day" : " days") + " open this month for a " +
-        KL.hoursLabel(state.halfHours, true) + " session."
-      : "Nothing open this month for a " + KL.hoursLabel(state.halfHours, true) +
-        " session — try the next one.";
+    el["cal-note"].textContent =
+      KL.hoursLabel(state.halfHours, true) + " · " +
+      (open
+        ? open + (open === 1 ? " day open this month." : " days open this month.")
+        : "nothing open this month, try the next one.");
 
     if (!KL.reduced && typeof gsap !== "undefined") {
       gsap.fromTo(
@@ -251,8 +251,8 @@
     const golden = S.goldenWindow(pick.date);
     const anyGolden = list.some((s) => s.golden);
     el["sun-note"].textContent = golden
-      ? "Sun goes down at " + S.clockLabel(golden.sunset) + " that day." +
-        (anyGolden ? " The starred ones catch the last of it." : "")
+      ? "Sun sets at " + S.clockLabel(golden.sunset) + " that day." +
+        (anyGolden ? " Starred slots run into the last of the light." : "")
       : "";
 
     if (!KL.reduced && typeof gsap !== "undefined") {
@@ -282,7 +282,7 @@
     {
       id: "card",
       name: "Card",
-      blurb: "Visa, Mastercard, Amex or Apple Pay, handled by Stripe. Nothing touches this site.",
+      blurb: "Visa, Mastercard, Amex or Apple Pay. Stripe handles it — card details never reach this site.",
     },
     {
       id: "venmo",
@@ -365,7 +365,7 @@
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) problems.push("check your email address");
 
     if (problems.length) {
-      el["form-note"].textContent = "Almost — " + problems.join(", ") + ".";
+      el["form-note"].textContent = "Before this can send: " + problems.join(", ") + ".";
       el["form-note"].classList.add("is-bad");
       const target = !pick.date || pick.slot == null ? el["block-time"] : el["block-you"];
       scrollTo(target);
@@ -499,9 +499,9 @@
 
     el["done-when"].textContent = S.longDate(p.date) + " · " + S.clockLabel(p.start);
     el["done-copy"].textContent = viaApi
-      ? "That's pencilled in. She'll confirm within a day and the day is held for you until then."
-      : "Your email app should have opened with everything filled in — send it and she'll " +
-        "confirm within a day. If it didn't open, mail " + P.email + " and quote " + p.reference + ".";
+      ? "That's pencilled in. The day is held for you until she confirms, usually within a day."
+      : "Your email app should have opened with everything filled in. Send it and she'll " +
+        "confirm within a day. If nothing opened, email " + P.email + " and quote " + p.reference + ".";
 
     el["pay-actions"].textContent = "";
 
@@ -518,7 +518,7 @@
       const note = document.createElement("p");
       note.className = "pay-pending";
       note.textContent =
-        "She'll email you a secure Stripe link for the " + KL.moneyShort(calc.deposit) +
+        "She'll email a Stripe link for the " + KL.moneyShort(calc.deposit) +
         " deposit when she confirms. Nothing is owed until then.";
       el["pay-actions"].appendChild(note);
       el["pay-actions"].appendChild(payButton(venmoUrl(calc.deposit), "or send it on Venmo now", false));
@@ -526,7 +526,7 @@
       const note = document.createElement("p");
       note.className = "pay-pending";
       note.textContent =
-        "No rush on the " + KL.moneyShort(calc.deposit) + " deposit — she'll send payment details with her reply.";
+        "No rush on the " + KL.moneyShort(calc.deposit) + " deposit. She'll send payment details with her reply.";
       el["pay-actions"].appendChild(note);
     }
 
@@ -637,8 +637,8 @@
     el["book-submit"].classList.toggle("is-idle", !ready);
     if (!sent && !el["form-note"].classList.contains("is-bad")) {
       el["form-note"].textContent = ready
-        ? "She replies to everything, usually the same day."
-        : "Pick a day and a start time above, then this sends.";
+        ? "She answers everything, usually the same day."
+        : "Pick a day and a start time above before sending.";
     }
 
     el["pay-grid"].querySelectorAll("input").forEach((input) => {
