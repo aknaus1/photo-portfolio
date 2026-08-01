@@ -40,8 +40,20 @@ function readJson(req) {
   });
 }
 
+/* Resolves to the exact bytes as a string, or null when they're gone.
+
+   Reading the stream is only safe if nothing upstream has already drained
+   it. A platform that parsed the body first leaves an ended stream, and
+   listening to it would hang until the function times out — so check for
+   every shape a parsed body can arrive in before touching the stream. */
 function readRaw(req) {
   if (typeof req.body === "string") return Promise.resolve(req.body);
+  if (Buffer.isBuffer(req.body)) return Promise.resolve(req.body.toString("utf8"));
+  /* parsed into an object: the original bytes no longer exist, and Stripe
+     signs bytes, so say so rather than guess by re-serialising */
+  if (req.body && typeof req.body === "object") return Promise.resolve(null);
+  if (req.readableEnded) return Promise.resolve("");
+
   return new Promise((resolve, reject) => {
     let data = "";
     req.setEncoding("utf8");

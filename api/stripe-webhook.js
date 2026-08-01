@@ -32,7 +32,14 @@ async function handler(req, res) {
   if (!secret) return json(res, 501, { ok: false, error: "webhook not configured" });
 
   const raw = await readRaw(req).catch(() => null);
-  if (raw == null) return json(res, 400, { ok: false, error: "no body" });
+  if (raw == null) {
+    /* Something parsed the body before we got it, so the signed bytes are
+       gone. That means the bodyParser opt-out below isn't taking effect on
+       this host — worth saying plainly rather than reporting a bad signature. */
+    console.error("webhook: raw body unavailable, check the bodyParser config");
+    return json(res, 400, { ok: false, error: "raw body unavailable" });
+  }
+  if (!raw) return json(res, 400, { ok: false, error: "empty body" });
 
   if (!verifyStripeSignature(raw, req.headers["stripe-signature"], secret)) {
     return json(res, 400, { ok: false, error: "bad signature" });

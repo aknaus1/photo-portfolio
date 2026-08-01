@@ -129,6 +129,12 @@ Add a webhook endpoint pointing at `/api/stripe-webhook` subscribed to
 `checkout.session.completed`. The signature is verified locally against
 `STRIPE_WEBHOOK_SECRET` before anything is touched.
 
+Stripe signs the raw request bytes, so that endpoint opts out of body
+parsing (`module.exports.config = { api: { bodyParser: false } }`). If you
+host it somewhere that ignores that and parses the body anyway, the
+endpoint answers `400 raw body unavailable` and logs why, rather than
+silently reporting every webhook as a bad signature.
+
 ### 3. Optional extras
 
 ```
