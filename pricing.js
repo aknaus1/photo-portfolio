@@ -227,7 +227,11 @@
     blurb.textContent = a.blurb;
     text.append(name, blurb);
 
-    label.append(input, markBox(), text);
+    const price = document.createElement("span");
+    price.className = "mark-price mono";
+    price.textContent = "+" + KL.moneyShort(a.price()) + " / " + a.per;
+
+    label.append(input, markBox(), text, price);
     el.addons.appendChild(label);
   });
 
@@ -243,7 +247,7 @@
     name.textContent = p.name;
     const blurb = document.createElement("span");
     blurb.className = "mark-blurb";
-    blurb.textContent = p.unit;
+    blurb.textContent = p.unit + " · " + KL.moneyShort(p.price);
     text.append(name, blurb);
 
     const read = document.createElement("span");
@@ -276,9 +280,9 @@
     name.textContent = t.name;
     label.append(name);
 
-    /* "included" and "let's talk" are statuses worth showing; a surcharge
-       figure is a component price, which the slip totals instead */
-    const status = t.quote ? "let's talk" : t.price ? "" : "no travel fee";
+    const status = t.quote
+      ? "let's talk"
+      : t.price ? "+" + KL.moneyShort(t.price) : "no travel fee";
     if (status) {
       const price = document.createElement("span");
       price.className = "pill-price mono";

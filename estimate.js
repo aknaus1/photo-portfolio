@@ -111,8 +111,11 @@ window.KL = (function () {
     const rolls = state.rolls;
     const items = [];
 
-    const add = (label, detail, amount) => {
-      if (amount > 0) items.push({ label, detail, amount });
+    /* `extra` marks an optional add-on. Those carry their price on the
+       slip; the base session (time, film, developing) is bundled into
+       the total and shown as one number. */
+    const add = (label, detail, amount, extra) => {
+      if (amount > 0) items.push({ label, detail, amount, extra: !!extra });
     };
 
     add("Time on location", hoursLabel(state.halfHours, true), hours * rate);
@@ -123,29 +126,40 @@ window.KL = (function () {
       rolls * stock.roll
     );
 
+    /* The resolution upgrade is one of the four add-on tickboxes, so it
+       gets its own priced line rather than disappearing into the bundled
+       develop-and-scan row. The base line's wording stays true either way. */
     add(
       "Develop + scan",
-      (state.addons.ultra ? "4000dpi ultra-res" : "2000dpi high-res") +
-        " × " + rolls + (rolls === 1 ? " roll" : " rolls"),
-      rolls * (P.lab.developScan + (state.addons.ultra ? P.lab.ultraScan : 0))
+      "high-res scans × " + rolls + (rolls === 1 ? " roll" : " rolls"),
+      rolls * P.lab.developScan
     );
 
+    if (state.addons.ultra) {
+      add(
+        "Ultra-res scans",
+        "4000dpi instead of 2000 × " + rolls,
+        rolls * P.lab.ultraScan,
+        true
+      );
+    }
+
     if (state.addons.editing) {
-      add("Hand-edited selects", "every keeper, by eye × " + rolls, rolls * P.lab.editing);
+      add("Hand-edited selects", "every keeper, by eye × " + rolls, rolls * P.lab.editing, true);
     }
     if (state.addons.negatives) {
-      add("Your negatives back", "sleeved and numbered × " + rolls, rolls * P.lab.negatives);
+      add("Your negatives back", "sleeved and numbered × " + rolls, rolls * P.lab.negatives, true);
     }
     if (state.addons.rush) {
-      add("Rush the lab", "next day instead of a week", P.lab.rush);
+      add("Rush the lab", "next day instead of a week", P.lab.rush, true);
     }
 
     P.prints.forEach((p) => {
       const qty = +state.prints[p.id] || 0;
-      if (qty > 0) add(p.name, p.unit + " × " + qty, qty * p.price);
+      if (qty > 0) add(p.name, p.unit + " × " + qty, qty * p.price, true);
     });
 
-    if (travel.price > 0) add("Travel", travel.name, travel.price);
+    if (travel.price > 0) add("Travel", travel.name, travel.price, true);
 
     const total = items.reduce((sum, i) => sum + i.amount, 0);
 
@@ -180,9 +194,10 @@ window.KL = (function () {
 
   /* ---------------- slip rendering ---------------- */
 
-  /* Fills a .slip-body with what's on the order. Deliberately no
-     per-line prices: the slip says what you're getting, and the total
-     at the bottom says what it comes to. */
+  /* Fills a .slip-body with what's on the order. The base session —
+     her time, the film, developing — is bundled into the total rather
+     than broken out. Optional add-ons show what each one adds, so you
+     can see what you're choosing before you choose it. */
   function renderSlipBody(el, calc) {
     el.textContent = "";
     if (!calc.items.length) {
@@ -196,15 +211,24 @@ window.KL = (function () {
       const row = document.createElement("div");
       row.className = "slip-row";
 
-      const label = document.createElement("p");
-      label.className = "slip-line";
+      const line = document.createElement("p");
+      line.className = "slip-line";
+      const label = document.createElement("span");
       label.textContent = item.label;
+      line.appendChild(label);
+
+      if (item.extra) {
+        const amount = document.createElement("span");
+        amount.className = "slip-amount";
+        amount.textContent = money(item.amount);
+        line.appendChild(amount);
+      }
 
       const detail = document.createElement("p");
       detail.className = "slip-detail";
       detail.textContent = item.detail;
 
-      row.append(label, detail);
+      row.append(line, detail);
       el.appendChild(row);
     });
   }

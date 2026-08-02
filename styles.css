@@ -1525,7 +1525,7 @@ body.has-cursor, body.has-cursor a, body.has-cursor button { cursor: none; }
 
 .mark-row {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   gap: 1rem;
   padding: 0.85rem 1.05rem;
@@ -1564,6 +1564,8 @@ body.has-cursor, body.has-cursor a, body.has-cursor button { cursor: none; }
 
 .mark-row.is-on .mark-box path { stroke-dashoffset: 0; }
 .mark-row.is-on .mark-box path + path { transition-delay: 0.1s; }
+
+.mark-price { color: var(--marker); white-space: nowrap; font-size: 0.78rem; }
 
 .mark-name { display: block; }
 .mark-blurb { display: block; color: var(--muted); font-size: 0.88rem; line-height: 1.4; }
@@ -1680,7 +1682,15 @@ body.has-cursor, body.has-cursor a, body.has-cursor button { cursor: none; }
 
 .slip-row + .slip-row { margin-top: 0.7rem; }
 
-.slip-line { font-weight: 500; }
+.slip-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: baseline;
+  font-weight: 500;
+}
+
+.slip-amount { font-variant-numeric: tabular-nums; white-space: nowrap; }
 
 .slip-detail { color: #6B6355; font-size: 0.68rem; }
 

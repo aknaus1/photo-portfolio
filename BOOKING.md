@@ -42,18 +42,21 @@ The numbers shipped are real mid-2026 Bay Area costs — single-roll retail
 film, walk-in develop-and-scan, pro-lab print list prices — with Kiana's
 hourly rate on top.
 
-**The site never shows a cost breakdown.** The slip lists what's on the
-order and gives one estimate total; individual prices don't appear
-anywhere a visitor can see. `costNotes` at the bottom of the file records
-where each number came from, for whoever revises them later — nothing
-renders it. Nothing customer-facing compares her prices to anyone else's
-either.
+**The base session is bundled, the extras are priced.** Her hourly rate,
+the film and the developing never appear as separate figures — they roll
+into one estimate total, so the page reads as a price rather than an
+invoice. Optional add-ons, prints and travel do show what each one adds,
+because people are deciding whether to buy them.
 
-One caveat: `assets/data/pricing.js` is a normal script, so the numbers
-are readable in devtools by anyone who looks. Not printing them is a
-presentation decision, not a secret. Moving pricing behind the API would
-be the only way to actually hide it, and it would cost the site its
-works-from-a-file-and-needs-no-backend property.
+`costNotes` at the bottom of the file records where each number came
+from, for whoever revises them later — nothing renders it. Nothing
+customer-facing compares her prices to anyone else's either.
+
+One caveat: `assets/data/pricing.js` is a normal script, so every number
+in it is readable in devtools by anyone who looks, including the bundled
+ones. Not printing them is a presentation decision, not a secret. Moving
+pricing behind the API would be the only way to actually hide it, and it
+would cost the site its works-from-a-file-and-needs-no-backend property.
 
 The deposit is a percentage of the total, clamped and rounded:
 `deposit: { pct, min, max, roundTo }`.
