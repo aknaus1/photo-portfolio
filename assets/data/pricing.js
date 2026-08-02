@@ -9,11 +9,11 @@
 
    TO CHANGE A PRICE: edit the number here. Nothing else.
 
-   What the site shows: the base session — her time, the film and the
-   developing — is bundled into a single estimate total, no breakdown.
-   Optional add-ons and prints do show what each one adds, so people can
-   decide whether to buy them. See `costNotes` at the bottom for where
-   each number came from; that list is for you, not the page.
+   What the site shows: anything the client picks carries a price — the
+   film stock, the add-ons, prints, travel — because those are decisions
+   they can't make blind. Her hourly rate and the developing stay bundled
+   into the estimate total. See `costNotes` at the bottom for where each
+   number came from; that list is for you, not the page.
 
    Worth knowing: this file is served to the browser, so the numbers
    are readable by anyone who opens devtools. Not showing them is a

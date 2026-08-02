@@ -160,7 +160,11 @@
     blurb.textContent = s.blurb;
     text.append(name, blurb);
 
-    label.append(dot, text);
+    const price = document.createElement("span");
+    price.className = "stock-price mono";
+    price.textContent = KL.moneyShort(s.roll) + " / roll";
+
+    label.append(dot, text, price);
     el.stocks.appendChild(label);
   });
 

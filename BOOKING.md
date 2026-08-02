@@ -42,11 +42,12 @@ The numbers shipped are real mid-2026 Bay Area costs — single-roll retail
 film, walk-in develop-and-scan, pro-lab print list prices — with Kiana's
 hourly rate on top.
 
-**The base session is bundled, the extras are priced.** Her hourly rate,
-the film and the developing never appear as separate figures — they roll
-into one estimate total, so the page reads as a price rather than an
-invoice. Optional add-ons, prints and travel do show what each one adds,
-because people are deciding whether to buy them.
+**What you pick is priced; her time isn't.** The film stock, add-ons,
+prints and travel all show what they cost, on the control where you
+choose them and again on the slip — those are decisions, and people
+can't weigh Portra against Gold without the numbers. Her hourly rate and
+the developing stay bundled into the estimate total, so the page reads as
+a price rather than an invoice.
 
 `costNotes` at the bottom of the file records where each number came
 from, for whoever revises them later — nothing renders it. Nothing

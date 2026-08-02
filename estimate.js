@@ -111,11 +111,12 @@ window.KL = (function () {
     const rolls = state.rolls;
     const items = [];
 
-    /* `extra` marks an optional add-on. Those carry their price on the
-       slip; the base session (time, film, developing) is bundled into
-       the total and shown as one number. */
-    const add = (label, detail, amount, extra) => {
-      if (amount > 0) items.push({ label, detail, amount, extra: !!extra });
+    /* `priced` means the line shows what it costs. Anything the client
+       picks — the film, the add-ons, prints, travel — is priced, because
+       those are decisions. Her time and the lab work are bundled into the
+       total instead of broken out. */
+    const add = (label, detail, amount, priced) => {
+      if (amount > 0) items.push({ label, detail, amount, priced: !!priced });
     };
 
     add("Time on location", hoursLabel(state.halfHours, true), hours * rate);
@@ -123,7 +124,8 @@ window.KL = (function () {
     add(
       "Film",
       stock.name + " × " + rolls + (rolls === 1 ? " roll" : " rolls"),
-      rolls * stock.roll
+      rolls * stock.roll,
+      true
     );
 
     /* The resolution upgrade is one of the four add-on tickboxes, so it
@@ -194,10 +196,9 @@ window.KL = (function () {
 
   /* ---------------- slip rendering ---------------- */
 
-  /* Fills a .slip-body with what's on the order. The base session —
-     her time, the film, developing — is bundled into the total rather
-     than broken out. Optional add-ons show what each one adds, so you
-     can see what you're choosing before you choose it. */
+  /* Fills a .slip-body with what's on the order. Lines the client chose
+     — film, add-ons, prints, travel — show what they cost. Her time and
+     the lab work stay bundled into the total. */
   function renderSlipBody(el, calc) {
     el.textContent = "";
     if (!calc.items.length) {
@@ -217,7 +218,7 @@ window.KL = (function () {
       label.textContent = item.label;
       line.appendChild(label);
 
-      if (item.extra) {
+      if (item.priced) {
         const amount = document.createElement("span");
         amount.className = "slip-amount";
         amount.textContent = money(item.amount);

@@ -1471,7 +1471,7 @@ body.has-cursor, body.has-cursor a, body.has-cursor button { cursor: none; }
 
 .stock {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   gap: 0.9rem;
   padding: 0.8rem 1.05rem;
@@ -1498,6 +1498,9 @@ body.has-cursor, body.has-cursor a, body.has-cursor button { cursor: none; }
   border-color: var(--marker);
   box-shadow: 0 0 0 3px rgba(226, 58, 33, 0.2);
 }
+
+.stock-price { color: var(--muted); white-space: nowrap; }
+.stock.is-on .stock-price { color: var(--marker); }
 
 .stock-name { display: block; }
 .stock-blurb { display: block; color: var(--muted); font-size: 0.88rem; line-height: 1.4; }
