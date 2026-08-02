@@ -183,7 +183,7 @@ window.KL_PRICING = {
   stripeLink: null,
 
   /* Venmo handle without the @. */
-  venmo: "Kiana-Lee",
+  venmo: "Kiananlee7",
 
   email: "hello@kianalee.photo",
 
