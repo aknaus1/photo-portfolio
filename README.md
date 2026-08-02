@@ -23,10 +23,25 @@ Re-encoding through Pillow also strips EXIF/GPS from the published copies.
 
 ## Pages
 
-- `index.html`: home, preloader, static film hero, and roll cards
+- `index.html`: home, preloader, static film hero, roll cards, price teaser
 - `rolls.html`: all rolls, stacked
 - `yosemite.html` / `graduation.html` / `close-to-home.html`: one page per roll
-- `about.html`, `contact.html`: about page and booking form (opens a prefilled email)
+- `about.html`: about page
+- `pricing.html`: session estimator
+- `booking.html`: availability calendar, half-hour slots, deposit
+- `contact.html`: general enquiries (opens a prefilled email)
 
 All pages share `styles.css` and `main.js`; every JS feature guards on its
-markup, so a page only gets the behaviors its HTML asks for.
+markup, so a page only gets the behaviors its HTML asks for. The two new
+pages add their own scripts on top: `estimate.js` (choices → money),
+`schedule.js` (dates → open slots), and a UI file each.
+
+## Pricing, scheduling and deposits
+
+Prices live in [assets/data/pricing.js](assets/data/pricing.js) and
+availability in [assets/data/availability.js](assets/data/availability.js).
+Both are plain globals, so they work from `file://` too — edit a number,
+reload, done.
+
+`api/` holds an optional, dependency-free Google Calendar + Stripe backend.
+The site is fully functional without it. See [BOOKING.md](BOOKING.md).

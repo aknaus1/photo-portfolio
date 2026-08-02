@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing · Kiana Lee</title>
+<meta name="description" content="Estimate a 35mm film session with Kiana Lee: session time, film, developing, scans, prints and editing, worked out from what you actually want, before you get in touch.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Pricing · Kiana Lee">
+<meta property="og:description" content="Estimate a 35mm film session with Kiana Lee: session time, film, developing, scans, prints and editing, worked out from what you actually want, before you get in touch.">
+<meta property="og:url" content="https://kianalee.photo/pricing.html">
+<meta property="og:image" content="https://kianalee.photo/assets/img/hero.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23100F0D'/%3E%3Cellipse cx='16' cy='16' rx='11' ry='9' fill='none' stroke='%23E23A21' stroke-width='2.5' transform='rotate(-8 16 16)'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+<script>
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+window.scrollTo(0, 0);
+</script>
+</head>
+<body>
+
+<div class="wipe wipe--in" aria-hidden="true"></div>
+
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"><span class="cursor-label mono"></span></div>
+
+<canvas class="grain" aria-hidden="true"></canvas>
+
+<header class="topbar">
+  <a class="topbar-name" href="index.html">K.LEE</a>
+  <button class="menu-toggle mono" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
+  <nav class="topbar-nav mono" id="main-nav" aria-label="Main">
+    <a href="rolls.html">Rolls</a>
+    <a href="pricing.html" aria-current="page">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="booking.html" class="topbar-book">Book a session</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <header class="page-head">
+    <p class="page-eyebrow mono intro-fade">Estimates &middot; San Jose &amp; around the Bay</p>
+    <h1 class="page-title split" data-split>WHAT IT COSTS</h1>
+    <p class="page-note intro-fade">
+      Pick what you want below and the slip keeps a running total.
+      It's an estimate, not a bill &mdash; she confirms the final number by
+      email before anything is owed.
+    </p>
+  </header>
+
+  <section class="est">
+
+    <div class="est-config">
+
+      <div class="est-block reveal" role="group" aria-labelledby="leg-1">
+        <h2 class="est-legend mono" id="leg-1"><span class="est-no">01</span> What are we shooting?</h2>
+        <div class="type-grid" id="type-grid"></div>
+        <p class="est-hint mono" id="type-note"></p>
+      </div>
+
+      <div class="est-block reveal" role="group" aria-labelledby="leg-2">
+        <h2 class="est-legend mono" id="leg-2"><span class="est-no">02</span> How much time?</h2>
+        <div class="dial">
+          <output class="dial-read" id="hours-read" for="hours">1 HR</output>
+          <input class="dial-range" id="hours" type="range" min="1" max="16" step="1" value="2"
+                 aria-label="Time on location, in half hours">
+          <div class="dial-scale mono" id="hours-scale" aria-hidden="true"></div>
+        </div>
+        <p class="est-hint mono" id="hours-note">Half-hour steps. Driving between spots counts.</p>
+      </div>
+
+      <div class="est-block reveal" role="group" aria-labelledby="leg-3">
+        <h2 class="est-legend mono" id="leg-3"><span class="est-no">03</span> How much film?</h2>
+        <div class="rolls">
+          <div class="stepper" role="group" aria-label="Number of rolls">
+            <button class="stepper-btn" type="button" data-roll="-1" aria-label="One roll fewer">&minus;</button>
+            <span class="stepper-val" id="rolls-val" aria-live="polite">1</span>
+            <button class="stepper-btn" type="button" data-roll="1" aria-label="One roll more">+</button>
+          </div>
+          <div class="canisters" id="canisters" aria-hidden="true"></div>
+          <p class="est-hint mono" id="rolls-note">36 frames a roll. She shoots most of it.</p>
+        </div>
+        <div class="stock-list" id="stock-list"></div>
+      </div>
+
+      <div class="est-block reveal" role="group" aria-labelledby="leg-4">
+        <h2 class="est-legend mono" id="leg-4"><span class="est-no">04</span> What you get back</h2>
+        <ul class="included mono" id="included"></ul>
+        <div class="marks-list" id="addons"></div>
+        <div class="print-list" id="prints"></div>
+      </div>
+
+      <div class="est-block reveal" role="group" aria-labelledby="leg-5">
+        <h2 class="est-legend mono" id="leg-5"><span class="est-no">05</span> Where?</h2>
+        <div class="pills" id="travel"></div>
+      </div>
+
+    </div>
+
+    <aside class="est-slip-wrap">
+      <div class="slip" id="slip">
+        <div class="slip-head">
+          <p class="slip-brand">KIANA LEE</p>
+          <p class="slip-sub">35MM &middot; SAN JOSE, CA</p>
+          <p class="slip-meta"><span>LAB ORDER &mdash; ESTIMATE</span><span id="slip-no">No. 0000</span></p>
+        </div>
+        <div class="slip-rule" aria-hidden="true"></div>
+        <div class="slip-body" id="slip-body"></div>
+        <div class="slip-rule" aria-hidden="true"></div>
+        <div class="slip-total">
+          <span>ESTIMATE</span>
+          <span id="slip-total">$0.00</span>
+        </div>
+        <p class="slip-deposit"><span>Deposit to hold the date</span><span id="slip-deposit">$0</span></p>
+        <p class="slip-quote" id="slip-quote" hidden></p>
+        <a class="slip-cta" id="slip-cta" href="booking.html" data-cursor="go">TAKE THIS TO THE CALENDAR &rarr;</a>
+        <p class="slip-fine">
+          Estimate only. She confirms the final number by email before
+          anything is due. The deposit comes off the total.
+        </p>
+        <p class="vis-hidden" id="slip-status" role="status"></p>
+        <p class="slip-stamp" aria-hidden="true">Estimate<br>only</p>
+      </div>
+    </aside>
+
+  </section>
+
+  <a class="est-bar mono" id="est-bar" href="booking.html" data-cursor="go">
+    <span class="est-bar-label">Estimate</span>
+    <span class="est-bar-total" id="est-bar-total">$0.00</span>
+    <span class="est-bar-go">Book &rarr;</span>
+  </a>
+
+  <section class="contact">
+    <p class="contact-eyebrow mono reveal">Numbers look right?</p>
+    <a class="contact-email" href="booking.html" data-cursor="hi">
+      <span class="contact-email-text split" data-split>PICK A DATE</span>
+      <svg class="contact-underline" viewBox="0 0 600 24" fill="none" aria-hidden="true" preserveAspectRatio="none">
+        <path class="marker-path marker-path-idle" d="M4 14 C 120 6, 300 20, 596 10" />
+      </svg>
+    </a>
+    <div class="contact-links mono reveal">
+      <a href="contact.html">Ask her something first</a>
+      <span aria-hidden="true">/</span>
+      <a href="mailto:hello@kianalee.photo">hello@kianalee.photo</a>
+    </div>
+  </section>
+
+  <footer class="footer mono">
+    <span>&copy; 2026 Kiana Lee</span>
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="rolls.html">Rolls</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html">About</a>
+      <a href="booking.html">Book</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <span>Photos by Kiana. Please ask before sharing.</span>
+  </footer>
+
+</main>
+
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/lenis.min.js"></script>
+<script src="assets/data/pricing.js"></script>
+<script src="main.js"></script>
+<script src="estimate.js"></script>
+<script src="pricing.js"></script>
+</body>
+</html>
